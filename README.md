@@ -1,117 +1,64 @@
 # FusedRec: Hybrid Recommendation System
 
-A full-stack movie recommendation web app that combines collaborative filtering with content features. It uses **Neural Collaborative Filtering (NCF) with Early Fusion** to learn from the **MovieLens 1M** dataset (1M+ ratings) together with multi-source content features. A Flask REST API serves the models, and a React.js frontend lets users explore recommendations and switch between four different recommendation models.
-
-<!-- TODO: add a screenshot or demo GIF here, e.g. ![FusedRec demo](docs/demo.gif) -->
+FusedRec is a full-stack movie recommendation web application that combines collaborative filtering with content features. It uses **Neural Collaborative Filtering (NCF) with Early Fusion** to learn from the **MovieLens 1M** dataset (1M+ ratings) together with multi-source content features. A Flask REST API serves the recommendations, and a React.js frontend lets users switch between four different recommendation models.
 
 ## Features
 
-- **Hybrid recommendations:** NCF with Early Fusion merges user-item interaction data with multi-source content features before the model learns from them.
-- **Swappable models:** a modular backend lets users switch between four recommendation models from the UI.
-- **Rich movie cards:** posters are fetched dynamically from the [TMDb API](https://www.themoviedb.org/documentation/api).
-- **Full-stack architecture:** Flask REST API backend with a React.js frontend.
-- **Large-scale training data:** built and evaluated on MovieLens 1M (1M+ records).
+- **Hybrid recommendations:** NCF with Early Fusion combines user-item interaction data with multi-source content features.
+- **Four swappable models:** the modular backend lets users switch between four recommendation models without changing the app.
+- **Dynamic movie posters:** posters are retrieved through the TMDb API.
+- **Full-stack architecture:** a Flask REST API backend and a React.js frontend.
+- **Large dataset:** built on MovieLens 1M, which contains over one million ratings.
 
 ## Tech Stack
 
-| Layer | Tools |
-|-------|-------|
+| Layer | Technologies |
+|-------|--------------|
 | Backend | Python, Flask (REST APIs) |
 | Frontend | React.js, JavaScript, HTML/CSS |
-| ML / Data | Neural Collaborative Filtering, Early Data Fusion, Scikit-learn, Pandas, NumPy |
-| External API | TMDb API (movie posters) |
+| Machine Learning | Neural Collaborative Filtering, Early Data Fusion, Scikit-learn, Pandas, NumPy |
+| External API | TMDb API |
 | Tools | Git, GitHub, Google Colab |
 
-## How It Works
+## Architecture
 
-1. **Data:** MovieLens 1M ratings are combined with additional content features from multiple sources.
-2. **Early Fusion:** the interaction and content features are fused at the input stage, and the fused representation is fed into the NCF model.
-3. **Serving:** the Flask backend loads the trained models and exposes recommendations through a REST API.
-4. **Model selection:** the frontend sends the user's chosen model to the API, so any of the four models can be used without changing the app.
-5. **Presentation:** movie metadata and posters come from TMDb and are shown as cards in the React UI.
+The project is split into two parts:
 
-## Recommendation Models
-
-| # | Model | Description |
-|---|-------|-------------|
-| 1 | NCF with Early Fusion | TODO: one-line description |
-| 2 | TODO: model name | TODO: one-line description |
-| 3 | TODO: model name | TODO: one-line description |
-| 4 | TODO: model name | TODO: one-line description |
-
-## Project Structure
-
-```text
-TODO: paste the output of `tree -L 2` here (or list the main folders)
-```
+- **Backend:** a Flask REST API that exposes the recommendation models. Each model sits behind the same interface, so the frontend can ask for recommendations from any of the four models.
+- **Frontend:** a React.js single-page interface that shows recommended movies and lets the user choose the model. Movie posters are loaded from the TMDb API.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.x
+- Python 3
 - Node.js and npm
 - A free [TMDb API key](https://www.themoviedb.org/settings/api)
+- The [MovieLens 1M](https://grouplens.org/datasets/movielens/1m/) dataset from GroupLens
 
-### 1. Clone the repository
+### Installation
 
-```bash
-git clone https://github.com/pyaaztechx2/FusedRec.git
-cd FusedRec
-```
+1. Clone the repository:
 
-### 2. Set up the backend
+   ```bash
+   git clone https://github.com/pyaaztechx2/FusedRec.git
+   cd FusedRec
+   ```
 
-```bash
-# TODO: add your real commands, for example:
-# create a virtual environment
-# pip install -r requirements.txt
-# set your TMDb key (name the environment variable your code actually reads)
-# start the Flask server
-```
+2. Install the Python dependencies for the backend and the npm packages for the frontend.
+3. Add your TMDb API key so the backend can fetch movie posters.
+4. Start the Flask server, then start the React development server, and open the app in your browser.
 
-### 3. Set up the frontend
+## Dataset
 
-```bash
-# TODO: add your real commands, for example:
-# cd <frontend folder>
-# npm install
-# npm start
-```
-
-### 4. Dataset and trained models
-
-Download [MovieLens 1M](https://grouplens.org/datasets/movielens/1m/) from GroupLens.
-
-<!-- TODO: say where to place the dataset, and whether trained model files are included in the repo or must be generated (for example, by running a notebook in Google Colab) -->
-
-## API
-
-<!-- TODO: list your main endpoints, for example:
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/... | ... |
--->
-
-## Evaluation
-
-<!-- TODO: add your results, for example RMSE, Hit Rate@10 or NDCG for each of the four models. Concrete numbers make this section the most valuable part of the README. -->
-
-## Roadmap
-
-- [ ] TODO: ideas for future work (for example, deployment, new models, user accounts)
+This project uses the [MovieLens 1M dataset](https://grouplens.org/datasets/movielens/1m/), published by GroupLens Research, which contains over one million movie ratings. Please follow GroupLens's terms when using or redistributing it.
 
 ## Acknowledgements
 
-- [GroupLens](https://grouplens.org/datasets/movielens/1m/) for the MovieLens 1M dataset
-- [TMDb](https://www.themoviedb.org/) for movie metadata and posters. This product uses the TMDb API but is not endorsed or certified by TMDb.
+- [GroupLens](https://grouplens.org/) for the MovieLens dataset.
+- [TMDb](https://www.themoviedb.org/) for movie posters. This product uses the TMDb API but is not endorsed or certified by TMDb.
 
 ## Author
 
 **Yash Chaugule**
 [LinkedIn](https://linkedin.com/in/yashchaugule) | chaugule.yash4@gmail.com
-
-## License
-
-<!-- TODO: add a LICENSE file (for example MIT) and name it here -->
